@@ -1,0 +1,37 @@
+@import "tailwindcss";
+
+/* ---> متغیرهای پیش‌فرض (Light) */
+:root {
+  --font-vazirmatn: var(--font-vazirmatn);
+
+  /* رنگ‌های اصلی که گفتی */
+  --color-bg: #ddd;         /* پس‌زمینه کل سایت */
+  --color-section: #fff;    /* پس‌زمینه بخش‌ها */
+  --color-text: #222;       /* متن پیش‌فرض */
+  --color-primary: #00aeef; /* آبی برای جلب توجه */
+  --color-border: #7a7a7a;  /* سایه‌ها / بردر */
+}
+
+/* ---> حالت دارک (وقتی <html> کلاس "dark" داشته باشه) */
+.dark {
+  --color-bg: #222;
+  --color-section: #333;
+  --color-text: #f5f5f5;
+  --color-primary: #00aeef; /* آبی ثابت بمونه */
+  --color-border: #7a7a7a;
+}
+
+/* فونت */
+.font-vazirmatn {
+  font-family: var(--font-vazirmatn), sans-serif;
+}
+
+/* تبدیل متغیرها به utilities (تا بتونی از bg-bg و text-text و ... استفاده کنی) */
+@layer utilities {
+  .bg-bg        { background-color: var(--color-bg); }
+  .bg-section   { background-color: var(--color-section); }
+  .text-text    { color: var(--color-text); }
+  .bg-primary   { background-color: var(--color-primary); }
+  .border-border{ border-color: var(--color-border); }
+  .shadow-border{ box-shadow: 0 1px 4px rgba(0,0,0,0.08); } /* اختیاری */
+}
