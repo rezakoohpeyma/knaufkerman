@@ -1,9 +1,11 @@
-import React from 'react'
+import React from "react";
 
 function KnaufTechnicalDetails() {
   return (
-    <div>KnaufTechnicalDetails</div>
-  )
+    <div>
+      <h1>دیتیل های فنی DWG</h1>
+    </div>
+  );
 }
 
-export default KnaufTechnicalDetails
+export default KnaufTechnicalDetails;

@@ -109,7 +109,7 @@ export default function Header() {
 
           <div>
             <h3>ثبت مشاوره رایگان </h3>
-            <form onSubmit={submitHandler}>
+            {/* <form onSubmit={submitHandler}>
               <label>نام</label>
               <Input type="text" placeholder="رضا " />
               <label>نام و نام خانوادگی</label>
@@ -117,15 +117,15 @@ export default function Header() {
               <label>شماره</label>
               <Input type="text" placeholder="09162726731" />
               <Button>ثبت درخواست</Button>
-            </form>
+            </form> */}
           </div>
 
           <div>
             <h2>شرکت فنی مهندسی طاق</h2>
             <p>کرمان، بلوارجمهوری اسلامی، روبروی بلوار هوشنگ مرادی، ساختمان یاقوت، طبقه سوم</p>
             <p>موبایل: 09132958103 دکتر امیر آزاد (مدیرعامل)</p>
-            <Instagram />
-            <Instagram />
+            {/* <Instagram />
+            <Instagram /> */}
           </div>
         </div>
       </Modal>

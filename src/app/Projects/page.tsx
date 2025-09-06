@@ -2,7 +2,12 @@ import React from 'react'
 
 function Projects() {
   return (
-    <div>Projects</div>
+    <div>
+      <h1>
+        پروژه های انجام شده شرکت فنی مهندسی <span>طاق</span>
+
+      </h1>
+    </div>
   )
 }
 
