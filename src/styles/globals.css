@@ -5,7 +5,7 @@
   --font-vazirmatn: var(--font-vazirmatn);
 
   /* رنگ‌های اصلی که گفتی */
-  --color-bg: #ddd;         /* پس‌زمینه کل سایت */
+  --color-bg: #f1f1f1;         /* پس‌زمینه کل سایت */
   --color-section: #fff;    /* پس‌زمینه بخش‌ها */
   --color-text: #222;       /* متن پیش‌فرض */
   --color-primary: #00aeef; /* آبی برای جلب توجه */
@@ -31,7 +31,10 @@
   .bg-bg        { background-color: var(--color-bg); }
   .bg-section   { background-color: var(--color-section); }
   .text-text    { color: var(--color-text); }
+  .text-primary    { color: var(--color-primary); }
+  .text-second    { color: var(--color-border); }
+  .bg-overlay    { background-color: #e8f5f781; }
   .bg-primary   { background-color: var(--color-primary); }
   .border-border{ border-color: var(--color-border); }
-  .shadow-border{ box-shadow: 0 1px 4px rgba(0,0,0,0.08); } /* اختیاری */
+  .shadow-border{ box-shadow: 0 1px 4px  var(--color-border); } 
 }
