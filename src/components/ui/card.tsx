@@ -1,9 +1,9 @@
 import React, { FC } from "react";
 import Image from "next/image";
 interface CardProps {
-  title: string;
+  title?: string;
   imageURl: string;
-  link: string;
+  link?: string;
 }
 const Card: FC<CardProps> = ({ title, imageURl, link }) => {
   return (
@@ -12,7 +12,7 @@ const Card: FC<CardProps> = ({ title, imageURl, link }) => {
         width={200}
         height={200}
         src={imageURl}
-        alt={title}
+        alt="title"
         className="object-cover"
       />
       <h3 className=" font-bold">{title}</h3>
