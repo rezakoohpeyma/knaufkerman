@@ -35,6 +35,13 @@
   .text-second    { color: var(--color-border); }
   .bg-overlay    { background-color: #e8f5f781; }
   .bg-primary   { background-color: var(--color-primary); }
+  .bg-primary:hover   { background-color: var(--color-primary); }
   .border-border{ border-color: var(--color-border); }
   .shadow-border{ box-shadow: 0 1px 4px  var(--color-border); } 
+   .hover\:bg-primary:hover {
+    background-color: var(--color-primary);
+  }
+  .hover\:text-text:hover {
+    color: var(--color-text);
+  }
 }
