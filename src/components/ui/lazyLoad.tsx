@@ -1,17 +1,26 @@
 "use client";
 
 import React, { useRef, useState, useEffect } from "react";
-import Image from "next/image";
+import Image, { ImageProps } from "next/image";
 
-interface LazyImageProps {
+interface LazyImageProps extends Omit<ImageProps, "src" | "alt"> {
   src: string;
   alt: string;
-  width: number;
-  height: number;
+  width?: number;
+  height?: number;
+  fill?: boolean;
   className?: string;
 }
 
-const LazyImage: React.FC<LazyImageProps> = ({ src, alt, width, height, className }) => {
+const LazyImage: React.FC<LazyImageProps> = ({
+  src,
+  alt,
+  width,
+  height,
+  fill,
+  className,
+  ...rest
+}) => {
   const ref = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState<boolean>(false);
 
@@ -32,16 +41,25 @@ const LazyImage: React.FC<LazyImageProps> = ({ src, alt, width, height, classNam
 
   return (
     <div ref={ref} style={{ minHeight: height }}>
-      {isVisible && (
-        <Image
-          src={src}
-          alt={alt}
-          width={width}
-          height={height}
-          className={className}
-          priority={false}
-        />
-      )}
+      {isVisible &&
+        (fill ? (
+          <Image
+            src={src}
+            alt={alt}
+            fill
+            className={className}
+            {...rest}
+          />
+        ) : (
+          <Image
+            src={src}
+            alt={alt}
+            width={width}
+            height={height}
+            className={className}
+            {...rest}
+          />
+        ))}
     </div>
   );
 };

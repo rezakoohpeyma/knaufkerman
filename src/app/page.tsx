@@ -29,7 +29,7 @@ function Page() {
         </div>
       </div>
 
-     <div className="max-w-7xl mt-10 mx-auto flex  justify-between transition-colors  h-60 md:h-80 ">
+     <div className="max-w-7xl mt-10 mx-auto flex  mb-10 justify-between transition-colors  h-60 md:h-80 ">
     
       <Card title="دیتیل های فنی کناف" imageURl="/images/landing/kplus-Recourse_gray.png" link="" />
       <Card title="لیست قیمت" imageURl="/images/landing/list-price.png" link="" />

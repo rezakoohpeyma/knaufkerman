@@ -2,7 +2,7 @@ import { MessageCircle, Instagram } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="bg-section h-90 md:h-80 border-t border-border mt-10 text-text">
+    <footer className="bg-section h-90 md:h-80 border-t border-border  text-text">
       <div className="container mx-auto px-4 py-8">
         {/* Main footer content */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-6">

@@ -10,11 +10,11 @@ export default function KnaufTechnicalDetails() {
   const activeSection = sections.find((s) => s.key === activeTab)
 
   return (
-    <div className="min-h-screen bg-bg font-vazirmatn">
-      <div className="max-w-7xl  mx-auto p-6">
+    <div className="min-h-screen  bg-bg font-vazirmatn">
+      <div className="max-w-7xl flex flex-col gap-20  mx-auto p-6">
         
         {/* Header */}
-        <div className="  p-2 border-r-5 border-r border-sky-500">
+        <div className="  ps-4 border-r-5 border-r border-sky-500">
           <h1 className="text-3xl font-bold text-second mb-2">دیتیل های فنی DWG</h1>
           <p className="text-second text-lg">مجموعه کامل فایل‌های فنی و نقشه‌های ساختمانی</p>
         </div>
@@ -30,7 +30,7 @@ export default function KnaufTechnicalDetails() {
                 onClick={() => setActiveTab(section.key)}
                 className={`px-6 py-4 whitespace-nowrap font-medium transition-all duration-300 relative ${
                   activeTab === section.key
-                    ? "text-primary bg-overlay border-b-2 border-primary"
+                    ? "text-primary  border-b-2 border-primary"
                     : "text-second hover:text-text hover:bg-overlay/50"
                 }`}
               >
@@ -41,7 +41,7 @@ export default function KnaufTechnicalDetails() {
         </div>
 
         {/* Table */}
-        <div className="bg-section max-w-7xl rounded-xl shadow-border overflow-hidden">
+        <div className="bg-section w-full max-w-7xl rounded-xl shadow-border overflow-hidden">
           <div className="overflow-x-auto">
             <table className="min-w-full text-right">
               <thead>
@@ -57,7 +57,7 @@ export default function KnaufTechnicalDetails() {
                   <tr
                     key={item.id}
                     className={`border-b border-border hover:bg-overlay/30 transition-colors duration-200 ${
-                      index % 2 === 0 ? "bg-white/50" : "bg-transparent"
+                      index % 2 === 0 ? "bg-tranparent" : "bg-bg"
                     }`}
                   >
                     <td className="px-6 py-4 text-text font-medium">
@@ -95,13 +95,7 @@ export default function KnaufTechnicalDetails() {
         </div>
 
 
-        {/* Footer Info */}
-        <div className="mt-8 bg-section rounded-xl shadow-border p-6">
-          <div className="flex items-center gap-3 text-second">
-            <FileText size={20} />
-            <span className="text-sm">مجموعاً {activeSection?.items.length} فایل در این بخش موجود است</span>
-          </div>
-        </div>
+     
         </div>
       </div>
     </div>
