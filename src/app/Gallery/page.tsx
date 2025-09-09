@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-import { useState } from "react"
+import { useState, useEffect, useRef } from "react"
 import { X, ChevronLeft, ChevronRight } from "lucide-react"
 import Button from "@/components/ui/button"
 import LazyImage from "@/components/ui/lazyLoad"
@@ -27,6 +27,8 @@ export default function Gallery() {
   const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null)
   const [currentIndex, setCurrentIndex] = useState(0)
 
+  const overlayRef = useRef<HTMLDivElement>(null)
+
   const openLightbox = (image: GalleryImage, index: number) => {
     setSelectedImage(image)
     setCurrentIndex(index)
@@ -50,12 +52,20 @@ export default function Gallery() {
     if (e.key === "ArrowRight") navigateImage("next")
   }
 
+  // وقتی لایت‌باکس باز میشه، فوکوس رو بیار روی overlay
+  useEffect(() => {
+    if (selectedImage && overlayRef.current) {
+      overlayRef.current.focus()
+    }
+  }, [selectedImage])
+
   return (
     <div className="container mx-auto px-4 py-12">
       {/* Header */}
       <div className="text-center mb-12">
         <h1 className="text-4xl md:text-5xl font-vazirmatn text-text tracking-tight">
-           گالری شرکت فنی مهندسی <span className="text-primary">طاق</span>        </h1>
+          گالری شرکت فنی مهندسی <span className="text-primary">طاق</span>
+        </h1>
       </div>
 
       {/* Gallery Grid */}
@@ -92,6 +102,7 @@ export default function Gallery() {
       {/* Lightbox */}
       {selectedImage && (
         <div
+          ref={overlayRef}
           className="fixed inset-0 z-50 bg-black/90 backdrop-blur-sm flex items-center justify-center animate-fadeIn"
           onClick={closeLightbox}
           onKeyDown={handleKeyDown}
@@ -103,6 +114,7 @@ export default function Gallery() {
           >
             {/* Close Button */}
             <Button
+              type="button"
               variant="ghost"
               size="icon"
               className="absolute -top-14 right-4 rounded-full bg-white/10 hover:bg-white/20 text-white shadow-lg"
@@ -111,30 +123,7 @@ export default function Gallery() {
               <X className="h-6 w-6" />
             </Button>
 
-            {/* Navigation */}
-            <Button
-              variant="ghost"
-              size="icon"
-              className="absolute left-4 top-1/2 -translate-y-1/2 rounded-full bg-white/10 hover:bg-white/20 text-white shadow-lg"
-              onClick={(e) => {
-                e.stopPropagation()
-                navigateImage("prev")
-              }}
-            >
-              <ChevronLeft className="h-8 w-8" />
-            </Button>
-
-            <Button
-              variant="ghost"
-              size="icon"
-              className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full bg-white/10 hover:bg-white/20 text-white shadow-lg"
-              onClick={(e) => {
-                e.stopPropagation()
-                navigateImage("next")
-              }}
-            >
-              <ChevronRight className="h-8 w-8" />
-            </Button>
+   
 
             {/* Image */}
             <div className="relative rounded-xl overflow-hidden shadow-2xl animate-zoomIn">

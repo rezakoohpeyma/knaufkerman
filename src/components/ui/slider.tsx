@@ -23,7 +23,7 @@ export default function Slider() {
       >
         {sliderItems.map((item , idx) => (
           <SwiperSlide key={item.id}>
-            <div className="w-full h-90 md:h-170 bg-gray-100 rounded-lg overflow-hidden flex flex-col items-center justify-center text-center">
+            <div className="w-full h-90 md:h-190 bg-gray-100 rounded-lg overflow-hidden flex flex-col items-center justify-center text-center">
               <Image
                 src={item.image}
                 alt={item.title}
@@ -32,20 +32,11 @@ export default function Slider() {
                 priority={idx === 0} 
               />
               <div className="bg-bg/80 p-4 rounded-md z-10 relative">
-                <h3 className="text-lg md:text-2xl font-vazirmatn text-text">
+                <h3 className="text-lg font-bold md:text-6xl font-vazirmatn text-primary">
                   {item.title}
                 </h3>
-                <p className="text-sm md:text-base text-text/80">
-                  {item.description}
-                </p>
-                {item.link && (
-                  <a
-                    href={item.link}
-                    className="mt-2 inline-block text-primary font-medium"
-                  >
-                    مشاهده بیشتر
-                  </a>
-                )}
+
+             
               </div>
             </div>
           </SwiperSlide>

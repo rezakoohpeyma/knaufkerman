@@ -13,10 +13,10 @@ function Page() {
 {/* {جزئیات توضیحی شرکت} */}
       <div className="max-w-7xl mt-20 mx-auto flex  justify-between transition-colors bg-section h-60 md:h-80 p-5 rounded-2xl">
         <div className="flex flex-col justify-center gap-10">
-          <h2 className="text-3xl font-normal border-r-3  ps-2 border-cyan-500 ">شرکت فنی مهندسی  
+          <h2 className="text-3xl font-bold border-r-3 font-vazirmatn  ps-2 border-cyan-500 ">شرکت فنی مهندسی  
           <span className="text-primary font-medium"> طاق </span>
           </h2>
-        <p className="text-second">مجری سیستم ساخت و ساز خشک کناف، سقف کاذب، سقف کلیک، دیوار</p>
+        <p className="text-second font-vazirmatn">مجری سیستم ساخت و ساز خشک کناف، سقف کاذب، سقف کلیک، دیوار</p>
         </div>
 
         <div className="flex items-center">

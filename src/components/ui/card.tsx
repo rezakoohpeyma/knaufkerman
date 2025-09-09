@@ -15,7 +15,7 @@ const Card: FC<CardProps> = ({ title, imageURl, link }) => {
         alt="title"
         className="object-cover"
       />
-      <h3 className=" font-bold">{title}</h3>
+      <h3 className=" font-vazirmatn font-medium">{title}</h3>
     </div>
   );
 };

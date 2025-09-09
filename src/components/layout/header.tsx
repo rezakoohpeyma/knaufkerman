@@ -1,6 +1,6 @@
 "use client";
 
-import { Search, Menu, X, SunMoon, Instagram  } from "lucide-react";
+import { Search, Menu, X, SunMoon, Instagram } from "lucide-react";
 import Button from "@/components/ui/button";
 import { useState } from "react";
 import { useMobile } from "@/hooks/useMobile";
@@ -16,7 +16,51 @@ export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { dark, toggle } = useTheme();
   const [open, setOpen] = useState(false);
-  const submitHandler = () => {};
+
+  // ✅ فرم state
+  const [form, setForm] = useState({
+    name: "",
+    lastName: "",
+    phone: "",
+  });
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
+
+  // ✅ مدیریت تغییر Input
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  console.log("سلام ", process.env.EMAIL_PASS);
+
+  };
+
+  // ✅ مدیریت submit فرم
+  const submitHandler = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setMessage("");
+
+    try {
+      const res = await fetch("/api/form", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setMessage(data.errors ? "ورودی‌ها نامعتبرند ❌" : "مشکل در ارسال سرور");
+      } else {
+        setMessage("✅ درخواست شما با موفقیت ثبت شد");
+        setForm({ name: "", lastName: "", phone: "" });
+      }
+    } catch (err) {
+      setMessage("❌ خطای اتصال به سرور");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <header className="w-full bg-section px-4 py-3 text-text transition-colors">
       {/* Mobile Menu */}
@@ -28,7 +72,7 @@ export default function Header() {
         >
           <div className="mt-4 pt-4 border-t border-border">
             <nav className="space-y-2">
-             {menuItem.map((item, idx) => (
+              {menuItem.map((item, idx) => (
                 <Link
                   key={idx}
                   href={item.math}
@@ -42,51 +86,50 @@ export default function Header() {
           </div>
         </div>
       )}
+
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Right side */}
         <div className="flex items-center gap-4">
-      
-
           <div className="flex items-center gap-3">
             <div className="text-right">
               <Link href="/">
-              <Image
-                src="/images/logo/full-logo.png"
-                width={200}
-                height={200}
-                alt="لوگو"
+                <Image
+                  src="/images/logo/full-logo.png"
+                  width={200}
+                  height={200}
+                  alt="لوگو"
                 />
-                </Link>
+              </Link>
             </div>
           </div>
         </div>
 
-            {isMobile && (
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2 hover:bg-bg rounded-md transition-colors"
-              aria-label="Toggle mobile menu"
-            >
-              {isMobileMenuOpen ? (
-                <X className="w-6 h-6 text-text" />
-              ) : (
-                <Menu className="w-6 h-6 text-text" />
-              )}
-            </button>
-          )}
+        {isMobile && (
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="p-2 hover:bg-bg rounded-md transition-colors"
+            aria-label="Toggle mobile menu"
+          >
+            {isMobileMenuOpen ? (
+              <X className="w-6 h-6 text-text" />
+            ) : (
+              <Menu className="w-6 h-6 text-text" />
+            )}
+          </button>
+        )}
+
         {/* Center - Desktop Navigation */}
         {!isMobile && (
           <nav className="flex items-center gap-8">
-         {menuItem.map((item, idx) => (
-                <Link
-                  key={idx}
-                  href={item.math}
-                  className="block px-4 py-3 hover:text-primary hover:bg-section rounded-md font-vazirmatn transition-colors"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {item.title}
-                </Link>
-              ))}
+            {menuItem.map((item, idx) => (
+              <Link
+                key={idx}
+                href={item.math}
+                className="block px-4 py-3 hover:text-primary hover:bg-section rounded-md font-vazirmatn transition-colors"
+              >
+                {item.title}
+              </Link>
+            ))}
           </nav>
         )}
 
@@ -104,28 +147,58 @@ export default function Header() {
           <Button onClick={() => setOpen(true)}>تماس با ما</Button>
         </div>
       </div>
-      <Modal isOpen={open} onClose={() => setOpen(false)}>
-        <div className="flex gap-50">
 
-          <div>
-            <h3>ثبت مشاوره رایگان </h3>
-            {/* <form onSubmit={submitHandler}>
-              <label>نام</label>
-              <Input type="text" placeholder="رضا " />
-              <label>نام و نام خانوادگی</label>
-              <Input type="text" placeholder="کوهپیما" />
-              <label>شماره</label>
-              <Input type="text" placeholder="09162726731" />
-              <Button>ثبت درخواست</Button>
-            </form> */}
+      {/* Modal */}
+      <Modal isOpen={open} onClose={() => setOpen(false)}>
+        <div className="flex flex-col md:flex-row gap-8 md:gap-16 p-6 md:p-12">
+          {/* Form Section */}
+          <div className="flex-1 bg-card rounded-xl p-6 md:p-8 shadow-lg">
+            <h3 className="text-2xl font-bold mb-6">ثبت مشاوره رایگان</h3>
+            <form onSubmit={submitHandler} className="flex flex-col gap-4">
+              <label className="text-sm font-medium">نام</label>
+              <Input
+                name="name"
+                value={form.name}
+                onChange={handleChange}
+                placeholder="رضا" label={""} type={""}              />
+
+              <label className="text-sm font-medium">نام و نام خانوادگی</label>
+              <Input
+                name="lastName"
+                value={form.lastName}
+                onChange={handleChange}
+                placeholder="کوهپیما" label={""} type={""}              />
+
+              <label className="text-sm font-medium">شماره</label>
+              <Input
+                name="phone"
+                value={form.phone}
+                onChange={handleChange}
+                placeholder="09162726731" label={""} type={""}              />
+
+              <Button type="submit" className="mt-4 w-full" disabled={loading}>
+                {loading ? "در حال ارسال..." : "ثبت درخواست"}
+              </Button>
+
+              {message && (
+                <p className="mt-2 text-sm font-medium text-center">{message}</p>
+              )}
+            </form>
           </div>
 
-          <div>
-            <h2>شرکت فنی مهندسی طاق</h2>
-            <p>کرمان، بلوارجمهوری اسلامی، روبروی بلوار هوشنگ مرادی، ساختمان یاقوت، طبقه سوم</p>
-            <p>موبایل: 09132958103 دکتر امیر آزاد (مدیرعامل)</p>
-            {/* <Instagram />
-            <Instagram /> */}
+          {/* Info Section */}
+          <div className="flex-1 bg-card rounded-xl p-6 md:p-8 shadow-lg">
+            <h2 className="text-2xl font-bold mb-4">شرکت فنی مهندسی طاق</h2>
+            <p className="mb-2">
+              کرمان، بلوارجمهوری اسلامی، روبروی بلوار هوشنگ مرادی، ساختمان یاقوت، طبقه سوم
+            </p>
+            <p className="mb-4">
+              موبایل: 09132958103 دکتر امیر آزاد (مدیرعامل)
+            </p>
+            <div className="flex gap-4 mt-4">
+              <Instagram className="w-6 h-6 text-primary hover:text-primary/80 transition-colors cursor-pointer" />
+              <Instagram className="w-6 h-6 text-primary hover:text-primary/80 transition-colors cursor-pointer" />
+            </div>
           </div>
         </div>
       </Modal>

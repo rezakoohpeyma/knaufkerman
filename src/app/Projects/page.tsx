@@ -111,30 +111,7 @@ export default function Projects() {
               <X className="h-6 w-6" />
             </Button>
 
-            {/* Navigation */}
-            <Button
-              variant="ghost"
-              size="icon"
-              className="absolute left-4 top-1/2 -translate-y-1/2 rounded-full bg-white/10 hover:bg-white/20 text-white shadow-lg"
-              onClick={(e) => {
-                e.stopPropagation()
-                navigateImage("prev")
-              }}
-            >
-              <ChevronLeft className="h-8 w-8" />
-            </Button>
-
-            <Button
-              variant="ghost"
-              size="icon"
-              className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full bg-white/10 hover:bg-white/20 text-white shadow-lg"
-              onClick={(e) => {
-                e.stopPropagation()
-                navigateImage("next")
-              }}
-            >
-              <ChevronRight className="h-8 w-8" />
-            </Button>
+         
 
             {/* Image */}
             <div className="relative rounded-xl overflow-hidden shadow-2xl animate-zoomIn">
