@@ -17,18 +17,12 @@ export default function Footer() {
           {/* Social media icons */}
           <div className="flex gap-4">
             <a
-              href="#"
-              className="text-second hover:text-primary transition-colors"
-              aria-label="WhatsApp"
+              href="https://instagram.com/knaufkerman"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary hover:text-primary/80 transition-colors"
             >
-              <MessageCircle size={24} />
-            </a>
-            <a
-              href="#"
-              className="text-second hover:text-primary transition-colors"
-              aria-label="Instagram"
-            >
-              <Instagram size={24} />
+              <Instagram className="w-7 h-7 cursor-pointer" />
             </a>
           </div>
         </div>

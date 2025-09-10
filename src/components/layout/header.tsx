@@ -29,8 +29,7 @@ export default function Header() {
   // ✅ مدیریت تغییر Input
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
-  console.log("سلام ", process.env.EMAIL_PASS);
-
+    console.log("سلام ", process.env.EMAIL_PASS);
   };
 
   // ✅ مدیریت submit فرم
@@ -49,7 +48,9 @@ export default function Header() {
       const data = await res.json();
 
       if (!res.ok) {
-        setMessage(data.errors ? "ورودی‌ها نامعتبرند ❌" : "مشکل در ارسال سرور");
+        setMessage(
+          data.errors ? "ورودی‌ها نامعتبرند ❌" : "مشکل در ارسال سرور"
+        );
       } else {
         setMessage("✅ درخواست شما با موفقیت ثبت شد");
         setForm({ name: "", lastName: "", phone: "" });
@@ -150,9 +151,9 @@ export default function Header() {
 
       {/* Modal */}
       <Modal isOpen={open} onClose={() => setOpen(false)}>
-        <div className="flex flex-col md:flex-row gap-8 md:gap-16 p-6 md:p-12">
+        <div className="flex w-full gap-5  flex-col md:flex-row  justify-center items-center">
           {/* Form Section */}
-          <div className="flex-1 bg-card rounded-xl p-6 md:p-8 shadow-lg">
+          <div className="flex-1 font-vazirmatn bg-card rounded-xl p-6 md:p-8 ">
             <h3 className="text-2xl font-bold mb-6">ثبت مشاوره رایگان</h3>
             <form onSubmit={submitHandler} className="flex flex-col gap-4">
               <label className="text-sm font-medium">نام</label>
@@ -160,44 +161,73 @@ export default function Header() {
                 name="name"
                 value={form.name}
                 onChange={handleChange}
-                placeholder="رضا" label={""} type={""}              />
+                placeholder="رضا"
+                label={""}
+                type={""}
+              />
 
               <label className="text-sm font-medium">نام و نام خانوادگی</label>
               <Input
                 name="lastName"
                 value={form.lastName}
                 onChange={handleChange}
-                placeholder="کوهپیما" label={""} type={""}              />
+                placeholder="کوهپیما"
+                label={""}
+                type={""}
+              />
 
               <label className="text-sm font-medium">شماره</label>
               <Input
                 name="phone"
                 value={form.phone}
                 onChange={handleChange}
-                placeholder="09162726731" label={""} type={""}              />
+                placeholder="09162726731"
+                label={""}
+                type={""}
+              />
 
               <Button type="submit" className="mt-4 w-full" disabled={loading}>
                 {loading ? "در حال ارسال..." : "ثبت درخواست"}
               </Button>
 
               {message && (
-                <p className="mt-2 text-sm font-medium text-center">{message}</p>
+                <p className="mt-2 text-sm font-medium text-center">
+                  {message}
+                </p>
               )}
             </form>
           </div>
 
           {/* Info Section */}
-          <div className="flex-1 bg-card rounded-xl p-6 md:p-8 shadow-lg">
-            <h2 className="text-2xl font-bold mb-4">شرکت فنی مهندسی طاق</h2>
-            <p className="mb-2">
-              کرمان، بلوارجمهوری اسلامی، روبروی بلوار هوشنگ مرادی، ساختمان یاقوت، طبقه سوم
+          <div className="flex-1 font-vazirmatn duration-300">
+            <h2 className="text-3xl font-extrabold mb-6 text-foreground">
+              شرکت فنی مهندسی طاق
+            </h2>
+
+            <p className="mb-3 text-base md:text-lg text-muted-foreground leading-relaxed">
+              کرمان، بلوار جمهوری اسلامی، روبروی بلوار هوشنگ مرادی، ساختمان
+              یاقوت، طبقه سوم
             </p>
-            <p className="mb-4">
-              موبایل: 09132958103 دکتر امیر آزاد (مدیرعامل)
+
+            <p className="mb-5 text-base md:text-lg text-muted-foreground">
+              موبایل:
+              <a
+                href="tel:09132958103"
+                className="font-semibold pr-2 text-foreground text-lg hover:text-primary transition-colors"
+              >
+                09132958103
+              </a>
             </p>
-            <div className="flex gap-4 mt-4">
-              <Instagram className="w-6 h-6 text-primary hover:text-primary/80 transition-colors cursor-pointer" />
-              <Instagram className="w-6 h-6 text-primary hover:text-primary/80 transition-colors cursor-pointer" />
+
+            <div className="flex gap-5 mt-6">
+              <a
+                href="https://instagram.com/knaufkerman"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary hover:text-primary/80 transition-colors"
+              >
+                <Instagram className="w-7 h-7 cursor-pointer" />
+              </a>
             </div>
           </div>
         </div>

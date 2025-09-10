@@ -1,14 +1,16 @@
 import React from "react";
 import { Phone, Mail, MapPin } from "lucide-react";
-
+import Title from "@/components/ui/title";
 function Pricing() {
   return (
     <section className="bg-section text-text font-vazirmatn py-12 px-4 md:px-16">
       <div className="max-w-4xl mx-auto space-y-8">
         {/* عنوان */}
+        <Title>
         <h1 className="text-3xl md:text-4xl font-bold text-center text-text">
           لیست قیمت محصولات کناف شرکت <span className=" text-primary ">طاق</span>
         </h1>
+        </Title>
 
         {/* توضیح */}
         <p className="text-base md:text-lg text-center text-text/80">
@@ -21,7 +23,12 @@ function Pricing() {
           <div className="flex flex-col gap-3">
             <div className="flex items-center gap-2 text-text">
               <Phone className="w-5 h-5" />
-              <span>09132958103 - دکتر امیر آزاد (مدیرعامل)</span>
+              <span> <a
+    href="tel:09132958103"
+    className="font-semibold pr-2 text-foreground text-lg hover:text-primary transition-colors"
+  >
+    09132958103
+  </a> - دکتر امیر آزاد (مدیرعامل)</span>
             </div>
             <div className="flex items-center gap-2 text-text">
               <Mail className="w-5 h-5" />

@@ -1,61 +1,71 @@
-"use client"
+"use client";
 
-import type React from "react"
-import { useState } from "react"
-import { X, ChevronLeft, ChevronRight } from "lucide-react"
-import Button from "@/components/ui/button"
-import LazyImage from "@/components/ui/lazyLoad"
+import type React from "react";
+import { useState } from "react";
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import Button from "@/components/ui/button";
+import LazyImage from "@/components/ui/lazyLoad";
+import Title from "@/components/ui/title";
 
 interface ProjectsImage {
-  id: number
-  src: string
-  alt: string
-  title?: string
+  id: number;
+  src: string;
+  alt: string;
+  title?: string;
 }
 
-const sampleImages: ProjectsImage[] = Array.from({ length: 142 }, (_, index) => {
-  const imageUrl = index + 1
-  return {
-    id: imageUrl,
-    src: `/images/projects/nama 01 (${imageUrl}).jpg`,
-    alt: `nama 01 (${imageUrl})`,
-    title: `Nama 01 (${imageUrl})`,
+const sampleImages: ProjectsImage[] = Array.from(
+  { length: 142 },
+  (_, index) => {
+    const imageUrl = index + 1;
+    return {
+      id: imageUrl,
+      src: `/images/projects/nama 01 (${imageUrl}).jpg`,
+      alt: `nama 01 (${imageUrl})`,
+      title: `Nama 01 (${imageUrl})`,
+    };
   }
-})
+);
 
 export default function Projects() {
-  const [selectedImage, setSelectedImage] = useState<ProjectsImage | null>(null)
-  const [currentIndex, setCurrentIndex] = useState(0)
+  const [selectedImage, setSelectedImage] = useState<ProjectsImage | null>(
+    null
+  );
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   const openLightbox = (image: ProjectsImage, index: number) => {
-    setSelectedImage(image)
-    setCurrentIndex(index)
-  }
+    setSelectedImage(image);
+    setCurrentIndex(index);
+  };
 
-  const closeLightbox = () => setSelectedImage(null)
+  const closeLightbox = () => setSelectedImage(null);
 
   const navigateImage = (direction: "prev" | "next") => {
     const newIndex =
       direction === "prev"
         ? (currentIndex - 1 + sampleImages.length) % sampleImages.length
-        : (currentIndex + 1) % sampleImages.length
+        : (currentIndex + 1) % sampleImages.length;
 
-    setCurrentIndex(newIndex)
-    setSelectedImage(sampleImages[newIndex])
-  }
+    setCurrentIndex(newIndex);
+    setSelectedImage(sampleImages[newIndex]);
+  };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === "Escape") closeLightbox()
-    if (e.key === "ArrowLeft") navigateImage("prev")
-    if (e.key === "ArrowRight") navigateImage("next")
-  }
+    if (e.key === "Escape") closeLightbox();
+    if (e.key === "ArrowLeft") navigateImage("prev");
+    if (e.key === "ArrowRight") navigateImage("next");
+  };
 
   return (
     <div className="container mx-auto px-4 py-12">
       {/* Header */}
       <div className="text-center mb-12">
-        <h1 className="text-4xl md:text-5xl font-vazirmatn text-text tracking-tight">
-          پروژه‌های انجام شده شرکت فنی مهندسی <span className="text-primary">طاق</span>        </h1>
+        <Title>
+          <h1 className="text-4xl md:text-5xl font-vazirmatn text-text tracking-tight">
+            پروژه‌های انجام شده شرکت فنی مهندسی{" "}
+            <span className="text-primary">طاق</span>
+          </h1>
+        </Title>
       </div>
 
       {/* Projects Grid */}
@@ -111,8 +121,6 @@ export default function Projects() {
               <X className="h-6 w-6" />
             </Button>
 
-         
-
             {/* Image */}
             <div className="relative rounded-xl overflow-hidden shadow-2xl animate-zoomIn">
               <LazyImage
@@ -136,5 +144,5 @@ export default function Projects() {
         </div>
       )}
     </div>
-  )
+  );
 }

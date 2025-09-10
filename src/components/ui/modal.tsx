@@ -19,15 +19,17 @@ const Modal: FC<ModalProps> = ({ isOpen, onClose, children }) => {
       />
 
       {/* Container */}
-      <div className="relative bg-bg rounded-xl shadow-lg w-full max-w-3xl p-6 z-10">
+      <div className="relative bg-bg rounded-xl shadow-lg w-full max-w-4xl p-6 z-10">
         {/* Header */}
         <div className="flex justify-end items-center mb-4">
           <button onClick={onClose} className="text-gray-500 hover:text-black">
             <CircleX />
           </button>
         </div>
+        <div className="flex justify-center ">
 
         {children}
+        </div>
       </div>
     </div>
   );

@@ -2,7 +2,6 @@
 
 import React from "react";
 import Slider from "@/components/ui/slider";
-import { MapPin, FileText, Wrench } from "lucide-react";
 import Image from "next/image";
 import Card from "@/components/ui/card";
 
@@ -31,8 +30,8 @@ function Page() {
 
      <div className="max-w-7xl mt-10 mx-auto flex  mb-10 justify-between transition-colors  h-60 md:h-80 ">
     
-      <Card title="دیتیل های فنی کناف" imageURl="/images/landing/kplus-Recourse_gray.png" link="" />
-      <Card title="لیست قیمت" imageURl="/images/landing/list-price.png" link="" />
+      <Card title="دیتیل های فنی کناف" imageURl="/images/landing/kplus-Recourse_gray.png" />
+      <Card title="لیست قیمت" imageURl="/images/landing/list-price.png"  />
       </div>
     </div>
   );

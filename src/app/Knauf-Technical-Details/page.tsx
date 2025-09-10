@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { sections } from "@/data/DWGTechnicalDetails"
 import { FileText, Download } from "lucide-react"
+import Title from "@/components/ui/title"
 
 export default function KnaufTechnicalDetails() {
   const [activeTab, setActiveTab] = useState(sections[0].key)
@@ -15,7 +16,9 @@ export default function KnaufTechnicalDetails() {
         
         {/* Header */}
         <div className="  ps-4 border-r-5 border-r border-sky-500">
+          <Title>
           <h1 className="text-3xl font-bold text-second mb-2">دیتیل های فنی DWG</h1>
+          </Title>
           <p className="text-second text-lg">مجموعه کامل فایل‌های فنی و نقشه‌های ساختمانی</p>
         </div>
 

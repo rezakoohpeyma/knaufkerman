@@ -5,6 +5,8 @@ import { useState, useEffect, useRef } from "react"
 import { X, ChevronLeft, ChevronRight } from "lucide-react"
 import Button from "@/components/ui/button"
 import LazyImage from "@/components/ui/lazyLoad"
+import Title from "@/components/ui/title"
+
 
 interface GalleryImage {
   id: number
@@ -36,23 +38,8 @@ export default function Gallery() {
 
   const closeLightbox = () => setSelectedImage(null)
 
-  const navigateImage = (direction: "prev" | "next") => {
-    const newIndex =
-      direction === "prev"
-        ? (currentIndex - 1 + sampleImages.length) % sampleImages.length
-        : (currentIndex + 1) % sampleImages.length
 
-    setCurrentIndex(newIndex)
-    setSelectedImage(sampleImages[newIndex])
-  }
 
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === "Escape") closeLightbox()
-    if (e.key === "ArrowLeft") navigateImage("prev")
-    if (e.key === "ArrowRight") navigateImage("next")
-  }
-
-  // وقتی لایت‌باکس باز میشه، فوکوس رو بیار روی overlay
   useEffect(() => {
     if (selectedImage && overlayRef.current) {
       overlayRef.current.focus()
@@ -63,9 +50,11 @@ export default function Gallery() {
     <div className="container mx-auto px-4 py-12">
       {/* Header */}
       <div className="text-center mb-12">
+        <Title>
         <h1 className="text-4xl md:text-5xl font-vazirmatn text-text tracking-tight">
           گالری شرکت فنی مهندسی <span className="text-primary">طاق</span>
         </h1>
+        </Title>
       </div>
 
       {/* Gallery Grid */}
@@ -105,7 +94,6 @@ export default function Gallery() {
           ref={overlayRef}
           className="fixed inset-0 z-50 bg-black/90 backdrop-blur-sm flex items-center justify-center animate-fadeIn"
           onClick={closeLightbox}
-          onKeyDown={handleKeyDown}
           tabIndex={0}
         >
           <div
