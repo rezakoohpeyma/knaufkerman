@@ -4,6 +4,12 @@ import Header from "@/components/layout/header";
 import { Vazirmatn } from "next/font/google";
 import { ThemeProvider } from "@/provides/theme-provider";
 import Footer from "@/components/layout/footer";
+// src/app/layout.tsx یا src/pages/_app.tsx
+// src/app/layout.tsx یا _app.tsx
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import '../styles/globals.css';
 
 export const metadata: Metadata = {
   title: "شرکت فنی و مهندسی طاق",

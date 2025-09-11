@@ -2,14 +2,13 @@
   "name": "knaufkerman",
   "version": "0.1.0",
   "private": true,
-"scripts": {
-  "dev": "next dev --turbopack",
-  "build": "next build --turbopack",
-  "start": "node server.js",
-  "export": "next export",
-  "lint": "eslint"
-},
-
+  "scripts": {
+    "dev": "next dev ",
+    "build": "next build ",
+    "start": "node server.js",
+    "export": "next export",
+    "lint": "eslint"
+  },
   "dependencies": {
     "express": "^4.18.2",
     "lucide-react": "^0.542.0",
@@ -22,14 +21,16 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
-    "@tailwindcss/postcss": "^4",
+    "@tailwindcss/postcss": "^4.1.13",
     "@types/node": "^20",
     "@types/nodemailer": "^7.0.1",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "autoprefixer": "^10.4.21",
     "eslint": "^9",
     "eslint-config-next": "15.5.2",
-    "tailwindcss": "^4",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.13",
     "typescript": "^5"
   }
 }
