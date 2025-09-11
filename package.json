@@ -2,13 +2,16 @@
   "name": "knaufkerman",
   "version": "0.1.0",
   "private": true,
-  "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build --turbopack",
-    "start": "next start",
-    "lint": "eslint"
-  },
+"scripts": {
+  "dev": "next dev --turbopack",
+  "build": "next build --turbopack",
+  "start": "node server.js",
+  "export": "next export",
+  "lint": "eslint"
+},
+
   "dependencies": {
+    "express": "^4.18.2",
     "lucide-react": "^0.542.0",
     "next": "15.5.2",
     "nodemailer": "^7.0.6",
